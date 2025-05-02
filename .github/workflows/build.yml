@@ -3,9 +3,9 @@ name: Build CI release
 on:
   push:
     branches:
-      - master
-    # paths:
-    #   - 'Quelea/**'
+      - main 
+    paths:
+      - 'Quelea/**'
 
   pull_request:
     branches:
@@ -62,7 +62,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: Quelea/dist/standalone/*
-          tag_name: CI-RELEASE
+          tag_name: CI-RELEASE-2025
           prerelease: true
           make_latest: false
           body: "**This is a CI Build, built from the latest copy of the source code automatically. 

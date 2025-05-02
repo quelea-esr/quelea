@@ -8,8 +8,7 @@ buildscript {
 
 plugins {
     id 'application'
-    id 'java'
-    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
     id 'edu.sc.seis.launch4j' version '3.0.5'
     id 'com.github.ben-manes.versions' version '0.39.0'
     id 'com.bmuschko.izpack' version '3.0'

@@ -1,0 +1,31 @@
+.gradle
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+Quelea/bundlejre/*
+Quelea/build/*
+Quelea/out-mac/*
+Quelea/dist/*
+Quelea/nbproject/*
+Quelea/.idea/*
+Quelea/output/*
+Quelea/.gradle/*
+Quelea/.nb-gradle/*
+Quelea/bin/*
+Quelea/private/*
+
+Thumbs.db
+gs.msi

@@ -34,7 +34,7 @@ jobs:
       - name: Build Java App (tar)
         run: |
           cd Quelea
-          gradle jar copyToDist tar
+          gradle jar downloadJres copyToDist tar
 
       - name: Cache Flatpak
         uses: actions/cache@v4

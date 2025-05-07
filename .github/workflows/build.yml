@@ -1,13 +1,9 @@
 name: Build CI release
 
-on:
+on: 
   push:
     branches:
-      - main 
-
-  pull_request:
-    branches:
-      - main
+      - modularize
 
 permissions:
   contents: write
@@ -28,29 +24,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       
-      - name: Install Wine & Flatpak
+      - name: Install Flatpak
         run: |
-          sudo dpkg --add-architecture i386
           sudo apt update
-          sudo apt install wine wine32 wine64 flatpak flatpak-builder
-
-      - name: Setup Inno Setup cache
-        id: cache-innosetup
-        uses: actions/cache@v4
-        with:
-          path: ~/.wine/drive_c/Program Files (x86)/Inno Setup 6
-          key: ${{ runner.os }}-innosetup
-
-      - name: Install InnoSetup
-        if: ${{ ! steps.cache-innosetup.outputs.cache-hit }} # || true on Inno Setup update
-        env:
-          DISPLAY: :99
-          WINEDEBUG: -all,err+all
-          WINEARCH: win64
-        run: |
-          Xvfb $DISPLAY &
-          curl -SL "https://files.jrsoftware.org/is/6/innosetup-6.2.2.exe" -o is.exe
-          wine is.exe /SP- /VERYSILENT /ALLUSERS /SUPPRESSMSGBOXES
+          sudo apt install flatpak flatpak-builder
 
       - name: Build
         run: |
@@ -76,7 +53,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/standalone/*
-          tag_name: CI-RELEASE-2025
+          tag_name: MODULARIZATION-CI-RELEASE
           prerelease: true
           make_latest: false
           body: "**This is a CI Build, built from the latest copy of the source code automatically. 

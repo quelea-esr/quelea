@@ -96,7 +96,7 @@ task labelcheck(type:JavaExec) {
 }
 
 task dist(type: GradleBuild) {
-    tasks = ['labelcheck', 'copyToDist', 'tar', 'releaseSummary']
+    tasks = ['labelcheck', 'jar', 'copyToDist', 'tar', 'releaseSummary']
 }
 
 dependencies {

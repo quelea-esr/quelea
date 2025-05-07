@@ -4,62 +4,12 @@ on:
   push:
     branches:
       - main 
-    paths:
-      - 'Quelea/**'
 
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
-  release-flatpak:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-      
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Install Flatpak packages
-        run: |
-          sudo apt install flatpak flatpak-builder
-
-      - name: Build Java App (tar)
-        run: |
-          cd Quelea
-          gradle jar downloadJres copyToDist tar
-
-      - name: Cache Flatpak
-        uses: actions/cache@v4
-        with:
-          path: |
-            flatpak/repo
-            flatpak/builddir
-          key: flatpak
-
-      - name: Build Flatpak
-        run: |
-          flatpak remote-add --if-not-exists --user flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-          cd flatpak
-          flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo builddir org.quelea.Quelea.yml
-          flatpak build-bundle repo/ ../Quelea/dist/standalone/quelea-CI-UNSTABLE.flatpak org.quelea.Quelea --runtime-repo=https://flathub.org/repo/flathub.flatpakrepo
-
-      - name: Upload binaries to release
-        if: ${{ github.event_name == 'push' }}
-        uses: softprops/action-gh-release@v2
-        with:
-          files: Quelea/dist/standalone/*
-          tag_name: CI-RELEASE-2025
-          prerelease: true
-          make_latest: false
-
   release:
     runs-on: ubuntu-24.04
     steps:
@@ -101,14 +51,13 @@ jobs:
 
       - name: Build
         run: |
-          cd Quelea
           gradle -Dnightly=true -Dversionsuffix=CI-UNSTABLE clean dist
 
       - name: Upload binaries to release
         if: ${{ github.event_name == 'push' }}
         uses: softprops/action-gh-release@v2
         with:
-          files: Quelea/dist/standalone/*
+          files: dist/standalone/*
           tag_name: CI-RELEASE-2025
           prerelease: true
           make_latest: false
@@ -122,4 +71,4 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         uses: actions/upload-artifact@v4
         with:
-          path: Quelea/dist/standalone/
+          path: dist/standalone/

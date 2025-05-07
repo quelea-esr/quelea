@@ -41,7 +41,7 @@ modules:
       - cp -a ./ /app/
     sources:
       - type: archive
-        path: ../Quelea/dist/standalone/quelea-CI-UNSTABLE-java-app.tar.gz
+        path: ../dist/standalone/quelea-CI-UNSTABLE-java-app.tar.gz
         strip-components: 1
 
       - type: file

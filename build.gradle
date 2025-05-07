@@ -89,7 +89,6 @@ task copyToDist {
         copy {from file("fopcfg.xml") into file(project.distdir)}
         copy {from file("build-install.sh") into file(project.distdir)}
         copy {from file("licenses/gplv3.txt") into file(project.distdir) rename { String filename -> return "LICENSE.txt"}}
-        copy {from file("launch.sh") into file(project.distdir)}
         copy {from file("licenses/copyright") into file(project.distdir + "/queleadoc")}
     }
 }

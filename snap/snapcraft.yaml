@@ -1,5 +1,5 @@
 name: quelea
-version: '2024.1'
+version: '2025.0'
 base: core20
 summary: Church projection software
 description: |
@@ -58,7 +58,7 @@ parts:
       wget -O jvm.tar.gz https://cdn.azul.com/zulu/bin/zulu21.32.17-ca-fx-jdk21.0.2-linux_x64.tar.gz
       mkdir jvm
       tar -xf jvm.tar.gz -C jvm --strip-components 1
-      wget -O gradle.zip https://services.gradle.org/distributions/gradle-8.6-bin.zip
+      wget -O gradle.zip https://services.gradle.org/distributions/gradle-8.14-bin.zip
       unzip gradle.zip
       PATH=$PATH:$(pwd)/jvm/bin:$(pwd)/gradle-8.6/bin
       JAVA_HOME=$(pwd)/jvm

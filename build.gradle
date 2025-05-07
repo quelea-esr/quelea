@@ -89,7 +89,7 @@ task createQueleaExe64(type: edu.sc.seis.launch4j.tasks.Launch4jLibraryTask) { /
 task downloadGStreamer {
     def f = new File('gs.msi')
     if (!f.exists()) {
-        new URL('https://gstreamer.freedesktop.org/data/pkg/windows/1.22.8/msvc/gstreamer-1.0-msvc-x86_64-1.22.8.msi').withInputStream{ i -> f.withOutputStream{ it << i }}
+        new URL('https://gstreamer.freedesktop.org/data/pkg/windows/1.26.1/msvc/gstreamer-1.0-msvc-x86_64-1.26.1.msi').withInputStream{ i -> f.withOutputStream{ it << i }}
     }
 }
 

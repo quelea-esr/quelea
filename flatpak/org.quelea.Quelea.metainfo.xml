@@ -52,7 +52,7 @@
   </recommends>
 
   <releases>
-      <release version="2025.0" date="2024-05-07">
+      <release version="2025.0" date="2024-07-05">
       <url type="details">https://github.com/quelea-projection/Quelea/blob/master/Quelea/changelogs/changelog-2025.0.txt</url>
       <description>
         <p>Quelea (2025.0) stable</p>
